@@ -1,0 +1,45 @@
+<section class="ta-center">
+  <h3><%= @album.name %></h3>
+  <% if current_user.admin? %>
+    <section class="grid">
+      <div>User</div>
+      <div>Images</div>
+      <div>Paid?</div>
+      <div>Expires</div>
+    </section>
+    <section class="grid">
+      <div><%= link_to @album.user.email, @album.user %></div>
+      <div><%= @album.photos.size %></div>
+      <div>
+        <% if @album.paid? %>
+          Yes
+        <% else %>
+          No
+        <% end %>
+      </div>
+      <div><%= time_tag @album.expiry_date - 1, format: "%B %d, %Y" %></div>
+    </section>
+    <%= link_to 'Album List', albums_path, class: "btn btn--link" %>
+    <%= link_to 'Edit Album', edit_album_path(@album), class: "btn btn--link" %>
+    <%= link_to 'Upload Files', upload_album_path(@album), class: "btn btn--link" %>
+  <% end %>
+</section>
+<section class="ta-center">
+  <% if Time.now < @album.expiry_date %>
+    <% if @album.paid? %>
+      <%= link_to "Download", @album.get_zip, class: "btn" %>
+    <% else %>
+      <h4>Buy the entire album of unmarked, full resolution images in JPEG format for $40</h4>
+      <%= link_to "Buy Now", new_album_payment_path(@album), class: "btn" %>
+    <% end %>
+    <br/><br/>
+    <% @photos.each do |photo| %>
+      <% cache photo do %>
+    	  <%= render "photos/photo", photo: photo %>
+    	 <% end %> 
+    <% end %>
+    <%= will_paginate @photos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  <% else %>
+    <h4>This album has expired.</h4>
+  <% end %>
+</section>

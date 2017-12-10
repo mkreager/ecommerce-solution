@@ -1,0 +1,12 @@
+<% content_for :heading do %>
+  <div class="ta-center">
+    <h3>Edit Album</h3>
+  </div>
+<% end %>
+<%= render 'form', album: @album %>
+<div class="ta-center">
+  <%= link_to 'Album Page', @album, class: "btn btn--link" %>
+  <%= link_to 'Upload Files', upload_album_path(@album), class: "btn btn--link" %>
+  <%= link_to 'Delete Album', @album, method: :delete, 
+        data: { confirm: 'Are you sure?' }, class: "btn btn--link" %>
+</div>

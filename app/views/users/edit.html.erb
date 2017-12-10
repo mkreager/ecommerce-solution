@@ -1,0 +1,9 @@
+<% content_for :heading do %>
+  Edit User
+<% end %>
+<%= render 'form', user: @user %>
+<div class="ta-center">
+  <%= link_to 'User Page', @user, class: "btn btn--link" %>
+  <%= link_to 'Delete User', @user, method: :delete, 
+        data: { confirm: 'Are you sure?' }, class: "btn btn--link" %>
+</div>

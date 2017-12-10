@@ -1,0 +1,5 @@
+<div class="ta-center">
+  <%= render "photo", photo: @photo %>
+  <%= link_to 'Delete Photo', @photo, method: :delete, 
+        data: { confirm: 'Are you sure?' }, class: "btn btn--link" %>
+</div>

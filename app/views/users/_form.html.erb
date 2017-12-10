@@ -1,0 +1,18 @@
+<%= form_for(user) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <p><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</p>
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3 class="ta-center"><%= yield :heading %></h3>
+  <label class="textfield">
+    <%= f.text_field :email %>
+    <span class="textfield__label">Email address</span>
+  </label>
+  <%= f.submit %>
+<% end %>

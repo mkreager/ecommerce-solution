@@ -1,0 +1,23 @@
+<section class="ta-center">
+  <% if current_user.admin? %>
+    <% unless @user == current_user %>
+      <%= link_to 'Edit User', edit_user_path(@user), class: "btn btn--link" %>
+    <% end %>
+    <%= link_to 'User List', users_path, class: "btn btn--link" %>
+    <%= link_to 'Album List', albums_path, class: "btn btn--link" %>
+  <% end %>
+  <% if @user.albums.many? %>
+    <h4>Hello <%= @user.email %>, here are your albums:</h4>
+  <% elsif @user.albums.any? %>
+    <h4>Hello <%= @user.email %>, here is your album:</h4>
+  <% else %>
+     <h4>Hello <%= @user.email %>, you do not have any albums yet.</h4>
+  <% end %>
+  <% @albums.each do |album| %>
+    <% cache album do %>
+      <% if Time.now < album.expiry_date %>
+        <%= render "albums/album", album: album %>
+      <% end %>
+    <% end %>
+  <% end %>
+</section>

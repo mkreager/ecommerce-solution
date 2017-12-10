@@ -1,0 +1,8 @@
+<%= form_tag "/logins" do %>
+  <h3 class="ta-center">Request a login link</h3>
+  <label class="textfield">
+    <%= text_field_tag :email %>
+    <span class="textfield__label">Enter your email address</span>
+  </label>
+  <%= submit_tag "Send Link" %>
+<% end %>

@@ -1,0 +1,9 @@
+<section class="ta-center">
+  <%= form_for @album do |f| %>
+    <h3>Upload Files</h3>
+    <p>Upload all the files for <%= link_to @album.name, @album %> in one go!</p>
+    <%= f.attachment_field :photos_files, multiple: true, presigned: true %>
+    <br/><br/>
+    <%= f.submit "Submit" %>
+  <% end %>
+</section>

@@ -1,0 +1,9 @@
+<% if current_user.admin? %>
+  <%= link_to 'User List', users_path, class: "btn btn--link" %>
+  <%= link_to 'Album List', albums_path, class: "btn btn--link" %>
+  <% if current_page?(edit_user_path) %>
+    <%= link_to 'User Page', @user, class: "btn btn--link" %>
+    <%= link_to 'Delete User', @user, method: :delete, 
+          data: { confirm: 'Are you sure?' }, class: "btn btn--link" %>
+  <% end %>        
+<% end %>

@@ -1,0 +1,12 @@
+<picture>
+  <source media="(min-width: 900px)" srcset="<%= photo.lg_image_path %>" />
+  <source media="(min-width: 600px)" srcset="<%= photo.md_image_path %>" />
+  <img src="<%= photo.sm_image_path %>">
+</picture>
+<h6>
+  <% if current_user.admin? %>
+    <%= link_to photo.file_filename, photo %>
+  <% else %>
+    <%= photo.file_filename %>
+  <% end %>
+</h6>

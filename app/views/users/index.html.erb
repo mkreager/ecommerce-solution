@@ -1,0 +1,9 @@
+<section class="ta-center">
+  <h3>User List</h3>
+  <p><%= link_to 'New User', new_user_path %></p>
+  <% @users.each do |user| %>
+    <% cache user do %>
+      <p><%= link_to user.email, user %></p>
+    <% end %>
+  <% end %>
+</section>

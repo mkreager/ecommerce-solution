@@ -1,0 +1,27 @@
+<section class="ta-center">
+  <h3>Album List</h3>
+  <p><%= link_to 'New Album', new_album_path %></p>
+  <section class="grid">
+    <div>Name</div>
+    <div>User</div>
+    <div>Expires</div>
+    <div>Paid?</div>
+  </section>
+  <% @albums.each do |album| %>
+    <% cache album do %>
+      <section class="grid">
+        <div><%= link_to album.name, album %></div>
+        <div><%= album.user.email %></div>
+        <div><%= time_tag album.expiry_date - 1, format: "%B %d, %Y" %></div>
+        <div>
+          <% if album.paid? %>
+            Yes
+          <% else %>
+            No
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+  <% end %>
+  <br/>
+</section>

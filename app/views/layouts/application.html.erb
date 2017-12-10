@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <%= display_meta_tags title: "Seanna Kreager Photography" %>
+    <%= display_meta_tags noindex: true %>
+    <%= display_meta_tags noindex: 'googlebot' %>
+    <%= display_meta_tags nofollow: true %>
+    <%= display_meta_tags nofollow: 'googlebot' %>
+    <%= favicon_link_tag %>
+    <%= favicon_link_tag 'favicon-16x16.png', sizes: '16x16', type: 'image/png' %>
+    <%= favicon_link_tag 'favicon-32x32.png', sizes: '32x32', type: 'image/png' %>
+    <%= favicon_link_tag 'favicon-96x96.png', sizes: '96x96', type: 'image/png' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'https://js.stripe.com/v3/', 'application' %>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  </head>
+  <body class="wrapper">
+    <nav>
+      <span id="top">
+        <% if signed_in? %>
+          <%= link_to "Sign Out", login_path(current_user), method: :delete, class: "btn btn--link f-right" %>
+          <%= link_to "Home", user_path(current_user), class: "btn btn--link f-right" %>
+        <% end %>
+      </span>
+      <span id="nav">
+        <% if signed_in? %>
+          <%= link_to "Seanna Kreager", user_path(current_user), id: "logo" %>
+        <% else %>
+          <%= link_to "Seanna Kreager", root_path, id: "logo" %>
+        <% end %>
+      </span>
+    </nav>
+    <% flash.each do %>
+      <h4 class="ta-center" id="notice"><%= notice %></h4>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
